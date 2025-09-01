@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ficha Médica — Formulario</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="page-bg"> <!-- fondo de página (color y textura suave) -->
+    <div class="container">
+      <header class="header">
+        <img src="https://img.icons8.com/color/96/000000/medical-doctor.png" alt="Icono médico" class="icono-medico" />
+        <div class="title-block">
+          <h1>Ficha Médica</h1>
+          <p class="subtitle">Registro clínico — formulario de ingreso</p>
+        </div>
+      </header>
+
+      <form id="fichaForm" autocomplete="off">
+        <label>RUT: <input type="text" id="rut" required placeholder="12.345.678-9"></label>
+        <label>Nombres: <input type="text" id="nombres" required></label>
+        <label>Apellidos: <input type="text" id="apellidos" required></label>
+        <label>Dirección: <input type="text" id="direccion" required></label>
+        <label>Ciudad: <input type="text" id="ciudad" required></label>
+        <label>Teléfono: <input type="text" id="telefono" required placeholder="+56 9 1234 5678"></label>
+        <label>Email: <input type="email" id="email" required placeholder="tu@correo.cl"></label>
+        <label>Fecha de nacimiento: <input type="date" id="fecha" required></label>
+        <label>Estado civil:
+          <select id="estadoCivil" required>
+            <option value="">Seleccione...</option>
+            <option>Soltero/a</option>
+            <option>Casado/a</option>
+            <option>Divorciado/a</option>
+            <option>Viudo/a</option>
+          </select>
+        </label>
+        <label>Comentarios: <textarea id="comentarios" rows="3"></textarea></label>
+
+        <div class="botones">
+          <button type="button" id="btnGuardar">Guardar</button>
+          <button type="reset" id="btnLimpiar">Limpiar</button>
+          <button type="button" id="btnCerrar">Cerrar</button>
+          <button type="button" id="btnExportar">Exportar CSV</button>
+        </div>
+      </form>
+
+      <section class="search">
+        <h2>Buscar por apellido</h2>
+        <div class="search-row">
+          <input type="text" id="buscarApellido" placeholder="Escribe un apellido" />
+          <button type="button" id="btnBuscar">Buscar</button>
+        </div>
+        <div id="resultadoBusqueda" class="resultado"></div>
+      </section>
+
+      <footer>
+        <hr />
+        <p class="sello">Creado por Nayade Griñen Arce — Christian González Rodríguez — Gerardo Maldonado Bustos</p>
+      </footer>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
