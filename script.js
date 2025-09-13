@@ -86,6 +86,7 @@ function getFormData(){
     telefono: document.getElementById('telefono').value.trim(),
     email: document.getElementById('email').value.trim(),
     fecha: document.getElementById('fecha').value,
+    edad: document.getElementById('edad').value.trim(),   // <-- NUEVO
     estadoCivil: document.getElementById('estadoCivil').value,
     comentarios: document.getElementById('comentarios').value.trim(),
     timestamp: new Date().toISOString()
@@ -144,14 +145,15 @@ function buscarPorApellido(){
     return;
   }
   cont.innerHTML = resultados.map(r => {
-    return `<div class="card">
-      <strong>${r.nombres} ${r.apellidos}</strong><br>
-      RUT: ${r.rut}<br>
-      Tel: ${r.telefono} — Email: ${r.email}<br>
-      <button onclick="cargarRegistro('${r.rut}')">Editar</button>
-      <button onclick="eliminarRegistro('${r.rut}')">Eliminar</button>
-    </div>`;
-  }).join('');
+  return `<div class="card">
+    <strong>${r.nombres} ${r.apellidos}</strong><br>
+    RUT: ${r.rut}<br>
+    Edad: ${r.edad || 'No registrada'}<br>
+    Tel: ${r.telefono} — Email: ${r.email}<br>
+    <button class="editar" onclick="cargarRegistro('${r.rut}')">Editar</button>
+    <button class="eliminar" onclick="eliminarRegistro('${r.rut}')">Eliminar</button>
+  </div>`;
+}).join('');
 }
 
 function cargarRegistro(rut){
@@ -166,6 +168,7 @@ function cargarRegistro(rut){
   document.getElementById('telefono').value = r.telefono;
   document.getElementById('email').value = r.email;
   document.getElementById('fecha').value = r.fecha;
+  document.getElementById('edad').value = r.edad;
   document.getElementById('estadoCivil').value = r.estadoCivil;
   document.getElementById('comentarios').value = r.comentarios;
   window.scrollTo(0,0);
@@ -193,6 +196,7 @@ function exportarCSV(){
       telefono: r.telefono,
       email: r.email,
       fecha: r.fecha,
+      edad: r.edad || '',            
       estadoCivil: r.estadoCivil,
       comentarios: r.comentarios,
       timestamp: r.timestamp
