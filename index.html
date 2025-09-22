@@ -18,15 +18,15 @@
       </header>
 
       <form id="fichaForm" autocomplete="off">
-        <label>RUT: <input type="text" id="rut" required placeholder="12.345.678-9"></label>
-        <label>Nombres: <input type="text" id="nombres" required></label>
-        <label>Apellidos: <input type="text" id="apellidos" required></label>
+        <label>RUT: <input type="text" id="rut" data-test="input-rut" required placeholder="12.345.678-9"></label>
+        <label>Nombres: <input type="text" id="nombres" data-test="input-nombres" required></label>
+        <label>Apellidos: <input type="text" id="apellidos" data-test="input-apellidos" required></label>
         <label>Dirección: <input type="text" id="direccion" required></label>
         <label>Ciudad: <input type="text" id="ciudad" required></label>
         <label>Teléfono: <input type="text" id="telefono" required placeholder="+56 9 1234 5678"></label>
         <label>Email: <input type="email" id="email" required placeholder="tu@correo.cl"></label>
-        <label>Fecha de nacimiento: <input type="date" id="fecha" required></label>
-        <label>Edad: <input type="number" id="edad" name="edad"></label>
+        <label>Fecha de nacimiento: <input type="date" id="fecha" data-test="input-fecha" required></label>
+        <label>Edad: <input type="number" id="edad" data-test="input-edad" name="edad"></label>
         <label>Estado civil:
           <select id="estadoCivil" required>
             <option value="">Seleccione...</option>
@@ -39,10 +39,10 @@
         <label>Comentarios: <textarea id="comentarios" rows="3"></textarea></label>
 
         <div class="botones">
-          <button type="button" id="btnGuardar">Guardar</button>
-          <button type="reset" id="btnLimpiar">Limpiar</button>
-          <button type="button" id="btnCerrar">Cerrar</button>
-          <button type="button" id="btnExportar">Exportar CSV</button>
+          <button type="button" id="btnGuardar" data-test="btn-guardar">Guardar</button>
+          <button type="reset" id="btnLimpiar" data-test="btn-Limpiar">Limpiar</button>
+          <button type="button" id="btnCerrar" data-test="btn-Cerrar">Cerrar</button>
+          <button type="button" id="btnExportar" data-test="btn-Exportar">Exportar CSV</button>
         </div>
       </form>
 

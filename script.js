@@ -212,3 +212,56 @@ function cerrarFormulario(){
   alert('Si abriste este archivo desde el disco, la ventana no se cerrará por seguridad. Si lo subiste a internet, usa el botón del navegador para cerrar la pestaña.');
   // window.close(); // no fiable desde archivo local
 }
+
+// --- Bloque A: fijar max fecha y calcular edad automáticamente ---
+const fechaInput = document.getElementById('fecha');
+if (fechaInput) {
+  // poner límite máximo a hoy
+  const hoy = new Date().toISOString().split('T')[0];
+  fechaInput.setAttribute('max', hoy);
+
+  function calcularEdadDesdeFecha(fechaISO) {
+    if (!fechaISO) return '';
+    const hoy = new Date();
+    const fn = new Date(fechaISO);
+    let edad = hoy.getFullYear() - fn.getFullYear();
+    const m = hoy.getMonth() - fn.getMonth();
+    if (m < 0 || (m === 0 && hoy.getDate() < fn.getDate())) edad--;
+    return String(edad);
+  }
+
+  // cuando cambias fecha, calcula edad automáticamente
+  fechaInput.addEventListener('change', () => {
+    const v = fechaInput.value;
+    const edadInput = document.getElementById('edad');
+    if (edadInput) edadInput.value = calcularEdadDesdeFecha(v);
+  });
+}
+
+// --- Bloque B: validaciones teléfono/email ---
+function validarTelefono(tel){
+  if(!tel) return false;
+  const num = tel.replace(/\s+/g,'').replace(/\+/g,'');
+  return /^(\+?56)?9\d{8}$/.test(num);
+}
+function validarEmail(email){
+  if(!email) return false;
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+// --- Bloque C: exponer utilidades y precarga de prueba (para facilitar ejecución y evidencias) ---
+window.readAll = readAll;
+window.writeAll = writeAll;
+window.buscarPorApellido = buscarPorApellido;
+window.cargarRegistro = cargarRegistro;
+window.eliminarRegistro = eliminarRegistro;
+
+window.precargarRegistrosDePrueba = function(){
+  const r = {
+    '11111111-1': {rut:'11111111-1', nombres:'Ana', apellidos:'Perez', edad:'30', telefono:'+56912345678', email:'ana@correo.cl', fecha:'1995-01-01', direccion:'Calle A 123', ciudad:'Santiago', estadoCivil:'Soltero/a', comentarios:'test'},
+    '22222222-2': {rut:'22222222-2', nombres:'Luis', apellidos:'Gomez', edad:'45', telefono:'+56987654321', email:'luis@correo.cl', fecha:'1980-02-02', direccion:'Calle B 456', ciudad:'Valparaiso', estadoCivil:'Casado/a', comentarios:'test'},
+    '33333333-3': {rut:'33333333-3', nombres:'Carla', apellidos:'Diaz', edad:'28', telefono:'+56911223344', email:'carla@correo.cl', fecha:'1997-03-03', direccion:'Calle C 789', ciudad:'Concepcion', estadoCivil:'Soltero/a', comentarios:'test'}
+  };
+  writeAll(r);
+  console.info('Registros de prueba cargados');
+};
